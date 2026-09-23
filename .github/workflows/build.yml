@@ -1,0 +1,41 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch llama.cpp source
+        run: |
+          rm -rf core-llm/src/main/cpp/llama.cpp
+          git clone --depth 1 https://github.com/ggerganov/llama.cpp core-llm/src/main/cpp/llama.cpp
+
+      - name: Fetch whisper.cpp source
+        run: |
+          rm -rf core-stt/src/main/cpp/whisper.cpp
+          git clone --depth 1 https://github.com/ggerganov/whisper.cpp core-stt/src/main/cpp/whisper.cpp
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install NDK & CMake
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager "ndk;26.1.10909125" "cmake;3.22.1"
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mangal-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
