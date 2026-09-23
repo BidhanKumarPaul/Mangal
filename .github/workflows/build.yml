@@ -11,6 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug - list repo root
+        run: |
+          echo "Repo root contents:"
+          ls -la
+          echo "Looking for gradlew anywhere:"
+          find . -maxdepth 3 -name "gradlew"
+
       - name: Fetch llama.cpp source
         run: |
           rm -rf core-llm/src/main/cpp/llama.cpp
