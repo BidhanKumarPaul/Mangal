@@ -23,8 +23,8 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
 
     // SQLCipher's own Android bindings, wired into Room's SupportSQLiteOpenHelper.Factory
-   //implementation("net.zetetic:android-database-sqlcipher:4.5.7")
-    implementation("net.zetetic:sqlcipher-android:4.9.0")
+    implementation("net.zetetic:android-database-sqlcipher:4.5.7")
+   //implementation("net.zetetic:sqlcipher-android:4.9.0")
     implementation("androidx.sqlite:sqlite:2.4.0")
 
     implementation("androidx.work:work-runtime-ktx:2.9.1")
