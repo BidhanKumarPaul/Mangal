@@ -11,13 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug - list repo root
-        run: |
-          echo "Repo root contents:"
-          ls -la
-          echo "Looking for gradlew anywhere:"
-          find . -maxdepth 3 -name "gradlew"
-
       - name: Fetch llama.cpp source
         run: |
           rm -rf core-llm/src/main/cpp/llama.cpp
@@ -48,8 +41,8 @@ jobs:
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" \
             "platform-tools" "platforms;android-34" "build-tools;34.0.0" \
             "ndk;26.1.10909125" "cmake;3.22.1"
-            
-       - name: Write local.properties
+
+      - name: Write local.properties
         run: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
           echo "ndk.dir=$ANDROID_SDK_ROOT/ndk/26.1.10909125" >> local.properties
@@ -69,4 +62,3 @@ jobs:
         with:
           name: mangal-debug-apk
           path: app/build/outputs/apk/debug/*.apk
-
