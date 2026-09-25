@@ -8,10 +8,10 @@ import com.bkpit.mangal.data.db.dao.ChatDao
 import com.bkpit.mangal.data.db.dao.SettingsDao
 import com.bkpit.mangal.data.db.entities.ChatMessageEntity
 import com.bkpit.mangal.data.db.entities.SettingsEntity
-//import net.sqlcipher.database.SQLiteDatabase
-//import net.sqlcipher.database.SupportFactory
-import net.zetetic.database.sqlcipher.SQLiteDatabase
-import net.zetetic.database.sqlcipher.SupportFactory
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
+//import net.zetetic.database.sqlcipher.SQLiteDatabase
+//import net.zetetic.database.sqlcipher.SupportFactory
 
 @Database(
     entities = [ChatMessageEntity::class, SettingsEntity::class],
